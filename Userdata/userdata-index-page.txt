@@ -1,0 +1,6 @@
+#!/bin/bash
+yum update -y
+yum install httpd -y
+echo '<h1>Hi This is a hosted webpage on aws ec2 linux server</h1>' > /var/www/html/index.html
+systemctl enable httpd
+systemctl start httpd

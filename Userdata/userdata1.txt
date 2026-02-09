@@ -1,0 +1,8 @@
+#!/bin/bash
+yum install httpd -y
+systemctl enable httpd
+systemctl start httpd
+wget https://test-bucket-jan26-batch-userdata.s3.us-east-1.amazonaws.com/Carvilla.zip
+unzip Carvilla.zip
+mv carvilla-v1.0/* /var/www/html
+systemctl restart httpd

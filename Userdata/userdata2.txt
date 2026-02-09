@@ -1,0 +1,8 @@
+#!/bin/bash
+yum install httpd -y
+systemctl enable httpd
+systemctl start httpd
+wget https://www.free-css.com/assets/files/free-css-templates/download/page296/spering.zip
+unzip spering.zip
+mv spering-html/* /var/www/html
+systemctl restart httpd

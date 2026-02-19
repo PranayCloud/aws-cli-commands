@@ -1,0 +1,53 @@
+AWS ALB Lab - Complete Setup Instructions
+==========================================
+
+📋 Lab Overview
+---------------
+This lab creates an Application Load Balancer with path-based routing:
+- Default Server: Handles root path (/)
+- Data Server: Handles /data path
+- Images Server: Handles /images path
+
+📁 Files Structure
+------------------
+lab-alb-creation.sh          → Main orchestration script
+create-alb-sg.sh             → Creates ALB security group (port 80 from anywhere)
+create-instance-sg.sh        → Creates instance security group (port 80 from ALB only)
+create-alb-instances.sh      → Launches 3 EC2 instances with userdata
+create-alb.sh                → Creates ALB, target groups, and routing rules
+alb-instances-userdata/      → Contains userdata scripts for each server
+
+🚀 Setup Steps
+--------------
+1. Edit lab-alb-creation.sh and replace:
+   - VPC_ID
+   - SUBNET1 (availability zone 1)
+   - SUBNET2 (availability zone 2)
+   - AMI_ID (Amazon Linux 2 AMI for ap-south-1)
+
+2. Make scripts executable:
+   chmod +x *.sh
+
+3. Run the main script:
+   ./lab-alb-creation.sh
+
+4. Wait 2-3 minutes for instances to fully initialize
+
+5. Test the URLs:
+   http://<ALB-DNS>/          → "Welcome to Default Service"
+   http://<ALB-DNS>/data      → "Welcome to Data Service"
+   http://<ALB-DNS>/images    → "Welcome to Images Service"
+
+🧹 Cleanup
+----------
+Delete resources in reverse order:
+1. Delete ALB
+2. Delete Target Groups
+3. Terminate EC2 Instances
+4. Delete Security Groups
+
+⚠️ Notes
+--------
+- Ensure subnets are in different availability zones
+- ALB requires minimum 2 subnets in different AZs
+- Wait for instances to pass health checks before testing

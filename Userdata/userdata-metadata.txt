@@ -46,7 +46,7 @@ h1 { text-align:center; margin-top: 40px; }
 </head>
 
 <body>
-<h1>AWS EC2 Instance Metadata</h1>
+<h1>AWS EC2 LINUX Server for NLB</h1>
 
 <table>
 <tr><th>Metadata Field</th><th>Value</th></tr>
